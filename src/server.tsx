@@ -2,9 +2,9 @@ import { Hono } from 'hono'
 import { serveStatic } from '@hono/node-server/serve-static'
 import {deleteCookie, getCookie, setCookie} from 'hono/cookie'
 
-import ipassAuth from '../middleware/ipassAuth'
-import baseHTML from '../view/base'
-import LoginForm from '../view/LoginForm'
+import ipassAuth from './middleware/ipassAuth'
+import baseHTML from './view/base'
+import LoginForm from './view/LoginForm'
 
 const app = new Hono()
 
