@@ -5,6 +5,8 @@ import {deleteCookie, getCookie, setCookie} from 'hono/cookie'
 import ipassAuth from './middleware/ipassAuth'
 import baseHTML from './view/base'
 import LoginForm from './view/LoginForm'
+import Profile from './view/profile'
+import Dashboard from './view/dashboard'
 
 const app = new Hono()
 
@@ -26,7 +28,7 @@ app.use('*', async (c, next) => {
 })
 
 
-app.get('/*', (c) => {
+app.get('/', (c) => {
   const path = c.req.path
   const method = c.req.method
   const loopCount = parseInt(getCookie(c, 'loop') || '1', 10);
@@ -41,6 +43,14 @@ app.get('/*', (c) => {
     })
 })
 
+app.get('/dashboard', (c) => {
+  return c.render(<Dashboard login={true} />, { login: true })
+})
+
+app.get('/profile', (c) => {
+  return c.render(<Profile login={true} />, { login: true })
+})
+
 app.post('/login', async (c) => {
   const { username, password } = await c.req.parseBody()
   
@@ -53,6 +63,11 @@ app.post('/login', async (c) => {
   return c.render(<LoginForm errorMessage='ユーザー名かパスワードが間違っています' />, {
     login: false,
   })
+})
+
+app.get('/logout', (c) => {
+  deleteCookie(c, 'authenticated')
+  return c.redirect('/')
 })
 
 export default app
