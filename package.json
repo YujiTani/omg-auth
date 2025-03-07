@@ -2,7 +2,7 @@
   "name": "omg-auth",
   "scripts": {
     "dev": "bun run --hot src/server.tsx",
-    "build": "bun build src/server.ts"
+    "build": "bun build src/server.tsx"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.8",
