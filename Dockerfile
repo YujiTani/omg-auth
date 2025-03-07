@@ -7,7 +7,7 @@ COPY src ./src
 
 RUN ls -la
 
-RUN bun upgrade && bun install --no-cache && \
+RUN bun install --no-cache && \
     bun run build
 
 USER bun
