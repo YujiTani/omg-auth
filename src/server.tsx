@@ -1,5 +1,4 @@
 import { Hono } from 'hono'
-import { serveStatic } from '@hono/node-server/serve-static'
 import {deleteCookie, getCookie, setCookie} from 'hono/cookie'
 
 import ipassAuth from './middleware/ipassAuth'
@@ -7,6 +6,8 @@ import baseHTML from './view/base'
 import LoginForm from './view/LoginForm'
 import Profile from './view/profile'
 import Dashboard from './view/dashboard'
+import Settings from './view/settings'
+import Notifications from './view/notifications'
 
 const app = new Hono()
 
@@ -48,6 +49,14 @@ app.get('/dashboard', (c) => {
 
 app.get('/profile', (c) => {
   return c.render(<Profile login={true} />, { login: true })
+})
+
+app.get('/settings', (c) => {
+  return c.render(<Settings login={true} />, { login: true })
+})
+
+app.get('/notifications', (c) => {
+  return c.render(<Notifications login={true} />, { login: true })
 })
 
 app.post('/login', async (c) => {
