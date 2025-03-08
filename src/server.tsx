@@ -10,7 +10,6 @@ import Dashboard from './view/dashboard'
 
 const app = new Hono()
 
-app.use('/favicon.ico', serveStatic({ path: './favicon.ico' }))
 app.use('*', baseHTML)
 app.use('*', async (c, next) => {
   if (c.req.path === '/login' && c.req.method === 'POST') {
