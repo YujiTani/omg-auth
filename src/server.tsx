@@ -70,14 +70,4 @@ app.get('/logout', (c) => {
   return c.redirect('/')
 })
 
-app.get('/*', (c) => {
-  return c.render(<div>
-    <h1 className='text-2xl font-bold'>404 Not Found</h1>
-    <p>This is a OMG_AUTH application.</p>
-    <p className='text-red-500 text-2xl font-bold'>{`Your Request: ${c.req.method}: ${c.req.path}`}</p>
-  </div>, {
-    login: true,
-  })
-})
-
 export default app
