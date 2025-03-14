@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY package.json bun.lock tsconfig.json ./
 COPY src ./src
+COPY favicon.ico ./favicon.ico
 
 RUN ls -la
 
