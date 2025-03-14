@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import {deleteCookie, getCookie, setCookie} from 'hono/cookie'
+import { serveStatic } from '@hono/node-server/serve-static'
 
 import ipassAuth from './middleware/ipassAuth'
 import baseHTML from './view/base'
@@ -12,6 +13,7 @@ import Notifications from './view/notifications'
 const app = new Hono()
 
 app.use('*', baseHTML)
+app.use('/favicon.ico', serveStatic({ path: './favicon.ico' }))
 app.use('*', async (c, next) => {
   if (c.req.path === '/login' && c.req.method === 'POST') {
     return next()
